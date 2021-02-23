@@ -53,8 +53,8 @@ And then you are ready to launch the core application.
         "url": "http://127.0.0.1/cgi-bin/CGIProxy.fcgi?cmd=getDevState&loginstuff",
         "intervalInSeconds": 3,
         "trigger_condition": {
-          "character_offset": 149, // The offset of the byte below in the motion detection response
-          "character_byte": 49 // Required character (as byte) to detect a motion
+          "character_offset": 149,
+          "character_byte": 49
         }
       }
     }
@@ -65,6 +65,9 @@ And then you are ready to launch the core application.
   }
 }
 ```
+
+*character_offset: The offset of the byte below in the motion detection response*<br>
+*character_byte: Required character (as byte) to detect a motion*
 
 ## Run in IDE
 Launch the main class ``StartSmartHome``
