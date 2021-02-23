@@ -1,5 +1,5 @@
 # SmartHome Addon
-An addon that adds a module to see who is currently connected to the home network and to display an IP-Camera feed via motion detection.<br>
+An addon that adds a module to see who is currently connected to the home network and to display an IP-Camera feed with motion detection.<br>
 
 ![Preview](.github/assets/preview.png)
 

@@ -172,10 +172,10 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
             context.drawRect(0, 0, this.width, this.height, new Color(0, 0, 0, 150));
 
             // Draw rotating loading image
-            context.translate(this.width / 2, this.height / 2);
+            context.translate(this.width / 2D, this.height / 2D);
             context.scale(0.3, 0.3);
             context.rotate(timePassed / 300F);
-            context.translate(-this.height / 2, -this.height / 2);
+            context.translate(-this.height / 2D, -this.height / 2D);
             context.drawImage(this.textureLoading, 0, 0, height, height);
         }
     }
