@@ -1,5 +1,5 @@
 # SmartHome Addon
-An addon that adds a module to see who is currently connected to the home network and to display a surveillance camera feed via motion detection.<br>
+An addon that adds a module to see who is currently connected to the home network and to display an IP-Camera feed via motion detection.<br>
 
 ![Preview](.github/assets/preview.png)
 
@@ -37,7 +37,7 @@ And then you are ready to launch the core application.
         }
       ]
     },
-    "surveillancecameramodule": {
+    "ipcameramodule": {
       "enabled": true,
       "x": 1664,
       "y": 293,
@@ -61,7 +61,8 @@ And then you are ready to launch the core application.
   },
   "fritzbox": {
     "address": "fritz.box",
-    "password": "admin123"
+    "password": "admin123",
+    "update_interval": 30
   }
 }
 ```

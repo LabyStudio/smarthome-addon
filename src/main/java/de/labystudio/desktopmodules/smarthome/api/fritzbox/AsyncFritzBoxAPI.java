@@ -44,11 +44,11 @@ public class AsyncFritzBoxAPI extends FritzBoxAPI {
     /**
      * Login asynchronously to the fritz box and start a repeating task to update the network devices
      *
-     * @param password        The password of the fritz box
-     * @param updateFrequency Update the network device list each x seconds
+     * @param password       The password of the fritz box
+     * @param updateInterval Update the network device list each x seconds
      * @throws Exception Login exception
      */
-    public void connect(String password, int updateFrequency) throws Exception {
+    public void connect(String password, int updateInterval) throws Exception {
         // Connect to fritz box async
         this.executorService.execute(() -> {
             try {
@@ -57,7 +57,7 @@ public class AsyncFritzBoxAPI extends FritzBoxAPI {
 
                 // Start repeating task
                 if (this.fritzBoxTask == null || this.fritzBoxTask.isDone() || this.fritzBoxTask.isCancelled()) {
-                    this.fritzBoxTask = this.executorService.scheduleAtFixedRate(this::updateNetworkDevices, 0, updateFrequency, TimeUnit.SECONDS);
+                    this.fritzBoxTask = this.executorService.scheduleAtFixedRate(this::updateNetworkDevices, 0, updateInterval, TimeUnit.SECONDS);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

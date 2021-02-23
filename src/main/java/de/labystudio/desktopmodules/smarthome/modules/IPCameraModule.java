@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
  *
  * @author LabyStudio
  */
-public class SurveillanceCameraModule extends FreeViewModule<SmartHomeAddon> {
+public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
 
     private static final Font FONT = new Font("Dialog", FontStyle.PLAIN, 12);
 
@@ -42,7 +42,7 @@ public class SurveillanceCameraModule extends FreeViewModule<SmartHomeAddon> {
 
     private BufferedImage textureLoading;
 
-    public SurveillanceCameraModule() {
+    public IPCameraModule() {
         super(200, 120);
     }
 
@@ -192,6 +192,6 @@ public class SurveillanceCameraModule extends FreeViewModule<SmartHomeAddon> {
 
     @Override
     public String getDisplayName() {
-        return "Surveillance Camera";
+        return "IP Camera";
     }
 }
