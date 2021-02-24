@@ -176,9 +176,9 @@ public class HomeIndicatorModule extends Module<SmartHomeAddon> implements Consu
 
     @Override
     public void loadTextures(TextureLoader textureLoader) {
-        this.textureFritz = textureLoader.loadTexture("textures/smarthome/homeindicator/fritz.png");
-        this.textureOnline = textureLoader.loadTexture("textures/smarthome/homeindicator/online.png", 12, 12);
-        this.textureOffline = textureLoader.loadTexture("textures/smarthome/homeindicator/offline.png", 12, 12);
+        this.textureFritz = textureLoader.load("textures/smarthome/homeindicator/fritz.png");
+        this.textureOnline = textureLoader.load("textures/smarthome/homeindicator/online.png", 12, 12);
+        this.textureOffline = textureLoader.load("textures/smarthome/homeindicator/offline.png", 12, 12);
     }
 
     @Override

@@ -144,7 +144,7 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
         }
 
         // Hide the module if there is no video feed right now
-        if (!this.motionPictureStream.isAlive()) {
+        if (this.motionPictureStream == null || !this.motionPictureStream.isAlive()) {
             return;
         }
 
@@ -182,7 +182,7 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
 
     @Override
     public void loadTextures(TextureLoader textureLoader) {
-        this.textureLoading = textureLoader.loadTexture("textures/smarthome/camera/loading.png");
+        this.textureLoading = textureLoader.load("textures/smarthome/camera/loading.png");
     }
 
     @Override
