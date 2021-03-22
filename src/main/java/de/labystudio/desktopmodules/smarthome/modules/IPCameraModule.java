@@ -118,7 +118,7 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
                                 this.lastMotionDetected = System.currentTimeMillis();
                                 this.motionPictureStream.openAsync();
                             }
-                        } else if (this.motionPictureStream.isAlive()) {
+                        } else if (this.motionPictureStream.isAlive() && this.lastMotionDetected + 1000 * 60 < System.currentTimeMillis() && !isMouseOver()) {
 
                             // Close the stream
                             this.motionPictureStream.close();
