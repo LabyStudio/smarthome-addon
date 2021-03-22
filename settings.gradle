@@ -1,4 +1,4 @@
 rootProject.name = 'smarthome-addon'
 
-//include ':desktopmodules-core'
-//project(':desktopmodules-core').projectDir = new File("../desktopmodules-core")
+include ':desktopmodules-core'
+project(':desktopmodules-core').projectDir = new File("../desktopmodules-core")
