@@ -45,8 +45,7 @@ And then you are ready to launch the core application.
       "view": {
         "zoom": 130,
         "offset_x": -82,
-        "offset_y": -52,
-        "intervalInSeconds": 3
+        "offset_y": -52
       },
       "motion_detection": {
         "enabled": true,
