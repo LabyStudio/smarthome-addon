@@ -31,11 +31,7 @@ public class SmartHomeAddon extends Addon {
         this.fritzBox.setAddress(address);
 
         // Connect
-        try {
-            this.fritzBox.connect(password, updateInterval);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.fritzBox.connect(password, updateInterval);
     }
 
     @Override

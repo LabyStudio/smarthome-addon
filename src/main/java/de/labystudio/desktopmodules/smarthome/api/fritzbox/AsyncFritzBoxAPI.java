@@ -22,6 +22,7 @@ public class AsyncFritzBoxAPI extends FritzBoxAPI {
     private ScheduledFuture<?> fritzBoxTask;
 
     private boolean authenticationError = false;
+    private int retry = 10;
 
     private final List<Consumer<Network>> networkListeners = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class AsyncFritzBoxAPI extends FritzBoxAPI {
      * @param updateInterval Update the network device list each x seconds
      * @throws Exception Login exception
      */
-    public void connect(String password, int updateInterval) throws Exception {
+    public void connect(String password, int updateInterval) {
         // Connect to fritz box async
         this.executorService.execute(() -> {
             try {
@@ -63,6 +64,21 @@ public class AsyncFritzBoxAPI extends FritzBoxAPI {
                 e.printStackTrace();
 
                 this.authenticationError = true;
+
+                // Check for retry
+                if (this.retry > 0) {
+                    this.retry--;
+
+                    // Wait 2 seconds
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+
+                    // Reconnect
+                    connect(password, updateInterval);
+                }
             }
         });
     }
