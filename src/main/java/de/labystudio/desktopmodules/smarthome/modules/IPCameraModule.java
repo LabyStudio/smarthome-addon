@@ -12,7 +12,7 @@ import de.labystudio.desktopmodules.core.renderer.font.StringEffect;
 import de.labystudio.desktopmodules.smarthome.SmartHomeAddon;
 import de.labystudio.desktopmodules.smarthome.api.mjpeg.MotionPictureStream;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.EOFException;
@@ -37,6 +37,8 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
     private long motionInterval;
     private boolean motionDetectionEnabled;
 
+    private boolean triggerOnStart;
+
     private int characterOffset;
     private byte characterByte;
 
@@ -59,6 +61,8 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        this.triggerOnStart = Addon.getConfigValue(config, "trigger_on_start", false);
 
         // Get motion configuration
         try {
@@ -84,6 +88,17 @@ public class IPCameraModule extends FreeViewModule<SmartHomeAddon> {
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onEnable() {
+        super.onEnable();
+
+        // Start stream on initialize
+        if (this.triggerOnStart && !this.motionPictureStream.isAlive()) {
+            this.lastMotionDetected = System.currentTimeMillis();
+            this.motionPictureStream.openAsync();
         }
     }
 

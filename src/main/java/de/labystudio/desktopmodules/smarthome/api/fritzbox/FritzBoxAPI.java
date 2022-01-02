@@ -17,7 +17,7 @@ import java.security.MessageDigest;
 public class FritzBoxAPI {
 
     private static final String URL_API_CHALLENGE = "http://%s/login_sid.lua";
-    private static final String URL_API_LOGIN = "http://%s/login_sid.lua?user=&response=%s";
+    private static final String URL_API_LOGIN = "http://%s/login_sid.lua?username=%s&response=%s";
     private static final String URL_API_NETWORK_DEVICES = "http://%s/query.lua?sid=%s&network=landevice:settings/landevice/list(name, active)";
 
     private static final Gson GSON = new Gson();
@@ -44,12 +44,13 @@ public class FritzBoxAPI {
     /**
      * Connect to the fritz box
      *
+     * @param username The username of the fritz box
      * @param password The password of the fritz box
      * @throws Exception Can't authenticate
      */
-    public void connect(String password) throws Exception {
+    public void connect(String username, String password) throws Exception {
         String challenge = getChallenge();
-        this.sid = login(challenge, password);
+        this.sid = login(challenge, username, password);
     }
 
     /**
@@ -82,14 +83,14 @@ public class FritzBoxAPI {
      * @return SID (Access token)
      * @throws Exception
      */
-    private String login(String challenge, String password) throws Exception {
+    private String login(String challenge, String username, String password) throws Exception {
         String stringToHash = challenge + "-" + password;
         String stringToHashUTF16 = new String(stringToHash.getBytes(StandardCharsets.UTF_16LE), StandardCharsets.UTF_8);
 
         String md5 = md5(stringToHashUTF16);
         String response = challenge + "-" + md5;
 
-        String result = request(String.format(URL_API_LOGIN, this.address, response));
+        String result = request(String.format(URL_API_LOGIN, this.address, username, response));
         return result.substring(result.indexOf("<SID>") + 5, result.indexOf("<SID>") + 21);
     }
 

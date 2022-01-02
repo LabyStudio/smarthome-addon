@@ -24,6 +24,7 @@ public class SmartHomeAddon extends Addon {
     public void onEnable() {
         JsonObject object = getConfigObject(this.config, "fritzbox");
         String address = getConfigValue(object, "address", "fritz.box");
+        String username = getConfigValue(object, "username", "admin");
         String password = getConfigValue(object, "password", "admin");
         int updateInterval = getConfigValue(object, "update_interval", 30);
 
@@ -31,7 +32,7 @@ public class SmartHomeAddon extends Addon {
         this.fritzBox.setAddress(address);
 
         // Connect
-        this.fritzBox.connect(password, updateInterval);
+        this.fritzBox.connect(username, password, updateInterval);
     }
 
     @Override
